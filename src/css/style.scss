@@ -1,0 +1,8 @@
+$black: #f00;
+$white: #fff;
+
+body {
+  box-shadow: 1px 1px 1px rgba($black, 0.5);
+  color: $white;
+  transition: 1s ease all;
+}
