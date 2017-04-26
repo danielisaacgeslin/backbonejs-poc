@@ -36,7 +36,8 @@ module.exports = {
       { test: /=\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&name=./src/css/fonts/[hash].[ext]&mimetype=application/font-woff' },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&name=./src/css/fonts/[hash].[ext]&mimetype=application/octet-stream' },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&name=./src/css/fonts/[hash].[ext]&mimetype=image/svg+xml' },
-      { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' }
+      { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
+      { test: /\.html$/, loader: 'html-loader' }
     ],
   },
   postcss: [autoprefixer],

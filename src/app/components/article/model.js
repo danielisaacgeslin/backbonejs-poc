@@ -1,7 +1,9 @@
 import { Model } from 'backbone';
 
 export default class Article extends Model {
-    constructor() { }
+    constructor() {
+        super();
+    }
 
     defaults() {
         return {
