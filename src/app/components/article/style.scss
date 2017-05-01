@@ -1,0 +1,21 @@
+.article-list {
+    .article-list-content {
+        .item-number {
+            background-color: #a9a9a9;
+            color: #f9f9f9;
+            padding: 2px;
+        }
+        .article-list-item-content {
+            .article {
+                background-color: #f9f9f9;
+                padding: 10px;
+                .reset {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+    footer {
+        margin-top: 15px; 
+    }
+}

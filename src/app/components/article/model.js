@@ -1,8 +1,13 @@
 import { Model } from 'backbone';
 
 export default class Article extends Model {
-    constructor() {
-        super();
+    constructor(params) {
+        super(params);
+    }
+
+    initialize() {
+        this.idAttribute = "id";
+        this.urlRoot = 'http://localhost';
     }
 
     defaults() {

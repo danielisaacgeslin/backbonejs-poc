@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import { Router, history } from 'backbone';
-import ArticleView from './components/article/view';
+import ArticleList from './components/article/list';
+
+const viewClasses = { ArticleList };
 
 export default class AppRouter extends Router {
     constructor() {
@@ -13,12 +15,12 @@ export default class AppRouter extends Router {
 
     routes() {
         return {
-            '': 'article'
+            '': () => this.renderView('ArticleList')
         };
     }
 
-    article() {
-        this.currentView = new ArticleView();
+    renderView(viewClassName) {
+        this.currentView = new viewClasses[viewClassName]();
         $('#app').html(this.currentView.el);
     }
 }

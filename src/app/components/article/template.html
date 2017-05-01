@@ -1,12 +1,16 @@
-<div>
-    <input type="text" name="id" value="${id}" placeholder="id" />
-    <input type="text" name="title" value="${title}" placeholder="title" />
-    <input type="text" name="description" value="${description}" placeholder="description" />
-    <input type="text" name="body" value="${body}" placeholder="body" />
-    <input type="text" name="owner" value="${owner}" placeholder="owner" />
-    <p><strong>id:</strong> ${id}</p>
-    <p><strong>title:</strong> ${title}</p>
-    <p><strong>description:</strong> ${description}</p>
-    <p><strong>body:</strong> ${body}</p>
-    <p><strong>owner:</strong> ${owner}</p>
-</div>
+<article class="article">
+    <div>
+        <p><strong>ID:</strong> ${id}</p>
+        <p><strong>Title:</strong> ${title}</p>
+        <p><strong>Description:</strong> ${description}</p>
+        <p><strong>Body:</strong> ${body}</p>
+        <p><strong>Owner:</strong> ${owner}</p>
+    </div>
+    <form onsubmit="return false;">
+        <input class="form-control" type="text" name="title" value="${title}" placeholder="Title" />
+        <input class="form-control" type="text" name="description" value="${description}" placeholder="Description" />
+        <input class="form-control" type="text" name="body" value="${body}" placeholder="Body" />
+        <input class="form-control" type="text" name="owner" value="${owner}" placeholder="Owner" />
+        <button class="btn btn-default reset">Reset</button>
+    </form>
+</article>

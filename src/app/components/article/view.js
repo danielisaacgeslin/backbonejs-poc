@@ -7,9 +7,9 @@ export default class ArticleView extends View {
         super(options);
     }
 
-    initialize() {
-        this.model = new ArticleModel();
-        this.tagName = 'div';
+    initialize(model) {
+        this.model = model;
+        this.tagName = 'article';
         this.className = 'article'
         this.template = require('./template.html');
 
@@ -20,7 +20,8 @@ export default class ArticleView extends View {
 
     events() {
         return {
-            'change input': 'updateModelFromInputs'
+            'change input': 'updateModelFromInputs',
+            'click .reset': 'reset'
         };
     }
 
@@ -32,8 +33,12 @@ export default class ArticleView extends View {
         this.model.set(data);
     }
 
+    reset() {
+        const id = this.model.get('id');
+        this.model.set(Object.assign({}, this.model.defaults(), { id }));
+    }
+
     render() {
         this.$el.html(_template(this.template)(this.model.toJSON()));
-        return this;
     }
 }

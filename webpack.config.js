@@ -1,7 +1,6 @@
 import webpack from 'webpack';
 import HtmlWebPackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
-import StyleLintPlugin from 'stylelint-webpack-plugin';
 import path from 'path';
 
 module.exports = {
@@ -31,13 +30,13 @@ module.exports = {
         loader: 'babel-loader'
       },
       { test: /(\.css|\.scss)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap'] },
-      { test: /\.(jpe?g|png|gif)$/i, loader: 'url-loader?limit=10000&name=./src/img/[hash].[ext]' },
+      { test: /\.(jpe?g|png|gif|png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=10000&name=./src/img/[hash].[ext]' },
       { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file-loader' },
       { test: /=\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&name=./src/css/fonts/[hash].[ext]&mimetype=application/font-woff' },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&name=./src/css/fonts/[hash].[ext]&mimetype=application/octet-stream' },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&name=./src/css/fonts/[hash].[ext]&mimetype=image/svg+xml' },
       { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
-      { test: /\.html$/, loader: 'html-loader' }
+      { test: /\.html$/, loader: 'html-loader' },
     ],
   },
   postcss: [autoprefixer],
@@ -45,11 +44,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: './src/index.ejs',
-    }),
-    new StyleLintPlugin({
-      configFile: '.stylelintrc',
-      files: './src/**/*.s?(a|c)ss',
-      failOnError: false
-    }),
+    })
   ],
 };
