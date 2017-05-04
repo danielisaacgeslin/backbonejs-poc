@@ -3,10 +3,6 @@ import { View } from 'backbone';
 import ArticleModel from './model';
 
 export default class ArticleView extends View {
-    constructor(options) {
-        super(options);
-    }
-
     initialize(model) {
         this.model = model;
         this.tagName = 'article';
@@ -21,7 +17,8 @@ export default class ArticleView extends View {
     events() {
         return {
             'change input': 'updateModelFromInputs',
-            'click .reset': 'reset'
+            'click .reset': 'reset',
+            'click .delete': 'delete'
         };
     }
 
@@ -36,6 +33,10 @@ export default class ArticleView extends View {
     reset() {
         const id = this.model.get('id');
         this.model.set(Object.assign({}, this.model.defaults(), { id }));
+    }
+
+    delete(){
+        this.model.destroy();
     }
 
     render() {

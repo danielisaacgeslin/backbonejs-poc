@@ -1,26 +1,27 @@
 import $ from 'jquery';
 import { Router, history } from 'backbone';
-import ArticleList from './components/article/list';
+import HeaderView from './components/header/view';
+import ArticleList from './components/article/list/view';
+import DummyView from './components/dummy/view';
 
-const viewClasses = { ArticleList };
+const viewClasses = { ArticleList, DummyView };
 
 export default class AppRouter extends Router {
-    constructor() {
-        super();
-    }
-
     initialize() {
+        this.app = $('#app');
         history.start({ pushState: true });
+        this.app.prepend(new HeaderView().el);
     }
 
     routes() {
         return {
-            '': () => this.renderView('ArticleList')
+            '': () => this.renderView('ArticleList'),
+            'dummy': () => this.renderView('DummyView')
         };
     }
 
     renderView(viewClassName) {
         this.currentView = new viewClasses[viewClassName]();
-        $('#app').html(this.currentView.el);
+        this.app.find('#outlet').html(this.currentView.el);
     }
 }

@@ -1,5 +1,7 @@
 @import "./bootstrap";
+@import "../app/components/header/style";
 @import "../app/components/article/style";
+@import "../app/components/dummy/style";
 
 body {
     background-color: #f1f1f1;

@@ -8,7 +8,7 @@ module.exports = {
     './src/webpack-public-path',
     'webpack-hot-middleware/client?reload=true',
     'babel-polyfill',
-    path.resolve(__dirname, './src/index.js')
+    path.resolve(__dirname, './src/app/app.js')
   ],
   output: {
     path: path.resolve(__dirname, 'build'), // eslint-disable-line
