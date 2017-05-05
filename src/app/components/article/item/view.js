@@ -31,8 +31,8 @@ export default class ArticleView extends View {
     }
 
     reset() {
-        const id = this.model.get('id');
-        this.model.set(Object.assign({}, this.model.defaults(), { id }));
+        const _id = this.model.get('_id');
+        this.model.set(Object.assign({}, this.model.defaults(), { _id }));
     }
 
     delete(){

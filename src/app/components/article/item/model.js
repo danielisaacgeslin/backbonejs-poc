@@ -2,13 +2,13 @@ import { Model } from 'backbone';
 
 export default class Article extends Model {
     initialize() {
-        this.idAttribute = "id";
-        this.urlRoot = './server';
+        this.idAttribute = "_id";
+        this.urlRoot = 'http://localhost:4000/article';
     }
 
     defaults() {
         return {
-            id: '',
+            _id: '',
             title: '',
             description: '',
             body: '',

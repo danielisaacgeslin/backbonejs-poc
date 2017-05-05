@@ -16,10 +16,8 @@ export default class ArticleList extends View {
 
     fetch() {
         this.collection.fetch().then(data => {
-            setTimeout(() => { // just to simulate async behaviour
-                this.collection.reset(data);
-                this.render();
-            }, 500);
+            this.collection.reset(data);
+            this.render();
         }, error => console.error(error));
     }
 

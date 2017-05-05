@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:server": "nodemon ./server/app.js --exec babel-node --presets es2015,stage-2",
+    "start:server": "babel-node ./server/app.js --exec --presets es2015,stage-2",
+    "start:server:dev": "nodemon ./server/app.js --exec babel-node --presets es2015,stage-2",
     "build": "npm run pre-build && babel-node server/build",
     "pre-build": "npm run lint && npm run test:build",
     "remove-build": "rimraf ./coverage",
