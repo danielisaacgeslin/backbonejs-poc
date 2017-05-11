@@ -1,6 +1,7 @@
 import logger from '../tools/logger';
 import DbHelper from '../services/DbHelper';
 import ResponseHandler from '../services/ResponseHandler';
+import { ObjectID } from 'mongodb';
 
 export default class ArticleController {
 
@@ -32,10 +33,15 @@ export default class ArticleController {
     }
 
     put(req, res, next) {
+        const params = { ...req.params };
+        delete params.id;
+        delete params._id;
         this.db.connect()
             .then(logger.chainLog(`puting ${this.collectionName}`), e => Promise.reject(e))
-            .then(db => db.collection(this.collectionName).update(req.query, req.params), e => Promise.reject(e))
-            .then(r => this.rh.successHandler(req.params, res, next), e => Promise.reject(e))
+            .then(db => db.collection(this.collectionName).update(
+                { _id: ObjectID(req.params._id) }, { $set: params }, false, true
+            ), e => Promise.reject(e))
+            .then(r => this.rh.successHandler(r, res, next), e => Promise.reject(e))
             .catch(e => this.rh.errorHandler(e, res, next));
     }
 

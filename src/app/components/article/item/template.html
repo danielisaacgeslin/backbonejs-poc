@@ -8,12 +8,13 @@
             <p><strong>Owner:</strong> ${owner}</p>
         </div>
         <form onsubmit="return false;">
-            <input class="form-control" type="text" name="title" value="${title}" placeholder="Title" />
-            <input class="form-control" type="text" name="description" value="${description}" placeholder="Description" />
-            <input class="form-control" type="text" name="body" value="${body}" placeholder="Body" />
-            <input class="form-control" type="text" name="owner" value="${owner}" placeholder="Owner" />
-            <button class="btn btn-default reset">Reset</button>
-            <button class="btn btn-default delete">Delete</button>
+            <input ${config.disabled} class="form-control" type="text" name="title" value="${title}" placeholder="Title" />
+            <input ${config.disabled} class="form-control" type="text" name="description" value="${description}" placeholder="Description" />
+            <input ${config.disabled} class="form-control" type="text" name="body" value="${body}" placeholder="Body" />
+            <input ${config.disabled} class="form-control" type="text" name="owner" value="${owner}" placeholder="Owner" />
+            <button ${config.disabled} class="btn btn-success save">Save</button>
+            <button ${config.disabled} class="btn btn-warning reset">Reset</button>
+            <button ${config.disabled} class="btn btn-danger delete">Delete</button>
         </form>
     </div>
 </article>

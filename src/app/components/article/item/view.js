@@ -3,22 +3,29 @@ import { View } from 'backbone';
 import ArticleModel from './model';
 
 export default class ArticleView extends View {
+
     initialize(model) {
         this.model = model;
         this.tagName = 'article';
         this.className = 'article'
         this.template = require('./template.html');
+        this.config = {};
 
         this.listenTo(this.model, 'change', this.render.bind(this));
         this.listenTo(this.model, 'destroy', this.remove.bind(this));
         this.render();
     }
 
+    set loading(value) {
+        this.config.disabled = value ? 'disabled' : '';
+    }
+
     events() {
         return {
             'change input': 'updateModelFromInputs',
             'click .reset': 'reset',
-            'click .delete': 'delete'
+            'click .delete': 'delete',
+            'click .save': 'save'
         };
     }
 
@@ -35,11 +42,23 @@ export default class ArticleView extends View {
         this.model.set(Object.assign({}, this.model.defaults(), { _id }));
     }
 
-    delete(){
+    delete() {
         this.model.destroy();
     }
 
+    save() {
+        this.loading = true;
+        this.model.save().then(() => {
+            this.loading = false;
+            this.render();
+        }, () => {
+            this.loading = false;
+            this.render();
+        });
+    }
+
     render() {
-        this.$el.html(_template(this.template)(this.model.toJSON()));
+        const options = { ...this.model.toJSON(), config: this.config };
+        this.$el.html(_template(this.template)(options));
     }
 }
