@@ -1,6 +1,7 @@
 import _template from 'lodash/template';
 import { View } from 'backbone';
 import ArticleModel from './model';
+import ToasterView from '../../toaster/view';
 
 export default class ArticleView extends View {
 
@@ -11,13 +12,20 @@ export default class ArticleView extends View {
         this.template = require('./template.html');
         this.config = {};
 
+
         this.listenTo(this.model, 'change', this.render.bind(this));
         this.listenTo(this.model, 'destroy', this.remove.bind(this));
         this.render();
     }
 
     set loading(value) {
-        this.config.disabled = value ? 'disabled' : '';
+        if (value) {
+            this.config.disabled = 'disabled';
+            this.$el.find('button, input').attr('disabled', true);
+        } else {
+            this.config.disabled = '';
+            this.$el.find('button, input').removeAttr('disabled');
+        }
     }
 
     events() {
@@ -48,13 +56,16 @@ export default class ArticleView extends View {
 
     save() {
         this.loading = true;
-        this.model.save().then(() => {
+        const save = this.model.save();
+        if (save) save.then(() => {
             this.loading = false;
-            this.render();
-        }, () => {
-            this.loading = false;
-            this.render();
+            new ToasterView({ status: 'success', title: 'Success', toast: 'saving is complete' });
+
         });
+        else {
+            this.loading = false;
+            new ToasterView({ status: 'danger', title: 'Error', toast: 'error while saving' });
+        }
     }
 
     render() {

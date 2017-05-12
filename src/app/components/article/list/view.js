@@ -14,11 +14,22 @@ export default class ArticleList extends View {
         this.fetch();
     }
 
+    events() {
+        return {
+            'click .add': 'add'
+        };
+    }
+
     fetch() {
         this.collection.fetch().then(data => {
             this.collection.reset(data);
             this.render();
         }, error => console.error(error));
+    }
+
+    add() {
+        this.collection.add({});
+        this.render();
     }
 
     render() {

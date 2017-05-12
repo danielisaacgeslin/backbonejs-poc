@@ -8,7 +8,7 @@ export default class Article extends Model {
 
     defaults() {
         return {
-            _id: '',
+            _id: null,
             title: '',
             description: '',
             body: '',
@@ -17,6 +17,7 @@ export default class Article extends Model {
     }
 
     validate(attrs) {
-
+        if (!attrs.title) return 'title is required';
+        if (!attrs.owner) return 'owner is required';
     }
 }

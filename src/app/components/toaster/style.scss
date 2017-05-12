@@ -1,0 +1,12 @@
+.toaster {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    background: #f9f9f9;
+    width: 250px;
+    min-height: 85px;
+    border: 1px #999 solid;
+    header {
+        border-bottom: 1px #999 solid;
+    }
+}
